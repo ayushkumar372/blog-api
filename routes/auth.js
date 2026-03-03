@@ -18,8 +18,8 @@ router.post("/login", async (req, res) => {
     return res.status(401).json({ error: "Invalid credentials" });
   }
 
-  // Simple password check (store hashed in production)
-  if (password !== ADMIN.password) {
+  const isMatch = await bcrypt.compare(password, ADMIN.password);
+  if (!isMatch) {
     return res.status(401).json({ error: "Invalid credentials" });
   }
 
