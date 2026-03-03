@@ -7,7 +7,10 @@ require("dotenv").config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: /^http:\/\/localhost:\d+$/, credentials: true }));
+app.use(cors({
+  origin: [/^http:\/\/localhost:\d+$/, "https://admin.uidrop.dev"],
+  credentials: true
+}));
 app.use(express.json({ limit: "10mb" }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
